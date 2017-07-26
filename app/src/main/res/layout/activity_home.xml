@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.rajankali.rxsample.viewmodel.HomeViewModel" />
+        <import type="com.example.rajankali.rxsample.R"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"
+            android:onClick="@{()->data.onClick()}"
+            android:text='@{data.isGrid? "List View" : "Grid View",default = "Grid View"}'
+            android:textColor="@android:color/white" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            bind:data='@{data.users}'
+            bind:list_item="@{R.layout.contact_item}"
+            bind:grid_item="@{R.layout.contact_item_grid}"
+            bind:manager='@{data.isGrid}' />
+    </LinearLayout>
+</layout>

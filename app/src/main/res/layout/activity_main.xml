@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.rajankali.rxsample.viewmodel.LoginViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="18dp"
+        tools:context="com.example.rajankali.rxsample.view.LoginActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:paddingEnd="10dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:text="@={data.userName}"
+            bind:error='@{data.invalidUserName}'
+            bind:font='@{"tms"}' />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingEnd="10dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:text="@={data.password}"
+            bind:error='@{data.invalidPassword}'
+            bind:font='@{"tms"}' />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{data.shouldEnableButton ? @color/button_enabled : @color/button_disabled}"
+                android:enabled="@{data.shouldEnableButton}"
+                android:onClick="@{()->data.loginButtonClick()}"
+                android:text="@{data.buttonText}"
+                android:textColor="@android:color/white" />
+
+            <ProgressBar
+                android:id="@+id/login_progress_bar"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="6dp"
+                android:visibility="@{data.shouldShowProgress ? View.VISIBLE : View.GONE}"
+                bind:tint='@{@android:color/white}'
+                tools:targetApi="lollipop" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

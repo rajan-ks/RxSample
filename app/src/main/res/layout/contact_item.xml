@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.rajankali.rxsample.dto.User" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:clipToPadding="true"
+        bind:cardElevation="6dp"
+        bind:cardUseCompatPadding="true"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:padding="15dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/contact_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                bind:image="@{data.avatar}"
+                android:contentDescription="@string/app_name" />
+
+            <TextView
+                android:id="@+id/contact_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/contact_image"
+                android:layout_toRightOf="@+id/contact_image"
+                bind:font='@{"tms"}'
+                android:text="@{data.firstName}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/contact_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/contact_name"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                bind:font='@{"tms"}'
+                android:layout_toEndOf="@+id/contact_image"
+                android:layout_toRightOf="@+id/contact_image"
+                android:text='@{data.lastName,default = "7416272016"}'
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</layout>
